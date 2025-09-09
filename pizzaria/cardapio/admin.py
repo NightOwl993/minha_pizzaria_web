@@ -19,3 +19,23 @@ def preco_formatado(self,obj):
 
 #Rotulo
 preco_formatado.short_description = 'Preço'
+
+class IngredientePizzaInline(admin.TabularInline):
+    #Definir Model
+    model = IngredientePizza
+    #Adicionar um 1 campo extra
+    extra = 1
+    #Quais campos eu quero mostrar
+
+    fields = ['ingrediente', 'quantidade_numerica', 'quantidade_texto']
+
+@admin.register(Pizza)
+class PizzaAdmin(admin.ModelAdmin):
+    list_display = ['nome', 'tipo_pizza' 'preco_total_formatado', 'tempo_preparo', 'ativa']
+    list_filter = ['tipo_pizza', 'ativa']
+    inlines = [IngredientePizzaInline]
+
+    def preco_total_formato(self, obj):
+        return f'R$ {obj.preco_total:.2f}'
+
+        preco_total_formatado.short_description = 'Preço Total'
