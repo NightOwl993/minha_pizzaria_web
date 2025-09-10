@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senac Pizza</title>
+</head>
+<body>
+    <nav>
+        <div>
+            <div>
+                <!-- logo -->
+                 <a href="{url 'cardapio.home' %}">Senac Pizza</a>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <a href="{% url 'cardapio.home' %}">Cardapio</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'cardapio.ingredientes' %}">ingredientes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Area Principal -->
+     <main>
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+     </main>
+</body>
+</html>

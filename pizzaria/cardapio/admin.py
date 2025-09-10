@@ -9,16 +9,8 @@ class TipoPizzaAdmin(admin.ModelAdmin):
 
 @admin.register(TipoIngrediente)
 class TipoIngredienteAdmin(admin.ModelAdmin):
-    list_display=['nome', 'tipo_ingrediente', 'preco_formatado', 'disponivel']
+    list_display = ['nome', 'icone']
 
-#Filtros
-list_filter = ['tipo_ingrediente', 'disponivel']
-
-def preco_formatado(self,obj):
-    return f'R$ {obj.preco_por_unidade:.3f}/{obj.unidade_medida}'
-
-#Rotulo
-preco_formatado.short_description = 'Preço'
 
 @admin.register(Ingrediente)
 class IngredienteAdmin(admin.ModelAdmin):
@@ -46,14 +38,14 @@ class IngredientePizzaInline(admin.TabularInline):
 
 @admin.register(Pizza)
 class PizzaAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'tipo_pizza' 'preco_total_formatado', 'tempo_preparo', 'ativa']
+    list_display = ['nome', 'tipo_pizza', 'preco_total_formatado', 'tempo_preparo', 'ativa']
     list_filter = ['tipo_pizza', 'ativa']
     inlines = [IngredientePizzaInline]
 
-    def preco_total_formato(self, obj):
+    def preco_total_formatado(self, obj):
         return f'R$ {obj.preco_total:.2f}'
 
-        preco_total_formatado.short_description = 'Preço Total'
+    preco_total_formatado.short_description = 'Preço Total'
 
 admin.site_header = "SENAC PIZZA - Administração"
 admin.site_title = "Pizzaria Admin"
