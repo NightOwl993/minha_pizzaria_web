@@ -4,8 +4,8 @@ from .models import TipoIngrediente, TipoPizza, Ingrediente, Pizza, IngredienteP
 # Create your views here.
 def home(request):
     """Pagina Incial"""
-    pizzas_salgadas = Pizza.objects.filter(tipo_pizza_nome="Salgada", ativa=True)
-    pizzas_doces = Pizza.objects.filter(tipo_pizza_nome="Doce", ativa=True)
+    pizzas_salgadas = Pizza.objects.filter(tipo_pizza__nome="Salgada", ativa=True)
+    pizzas_doces = Pizza.objects.filter(tipo_pizza__nome="Doce", ativa=True)
 
     #Dicionario com os dadso que eu quero mostrar na tela
     context = {
